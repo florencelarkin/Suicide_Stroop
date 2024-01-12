@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stroop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <script src="./jspsych/jspsych.js"></script>
+    <script src="./jspsych/plugin-html-button-response.js"></script>
+    <link href="./jspsych/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="./main.js"></script>
+    <style>
+      #display_stage_background {
+        width: 100vw;
+        background-color: white;
+        z-index: -1;
+      }
+
+      #display_stage {
+        position: fixed;
+        left: 1vw;
+        top: 1vh;
+        height: 98vh;
+        width: 98vw;
+        background-color: black;
+        box-shadow: 1px 1px 1px #999;
+        border-radius: 15px;
+        z-index: 0;
+        overflow-y: hidden;
+        overflow-x: hidden; 
+        }       
+    </style>
+  </head>
+  <body></body>
+  <script>
+
+    /* initialize jsPsych */
+    var jsPsych = initJsPsych({
+        //timeline: timeline,
+      on_finish: function() {
+        jsPsych.data.displayData();
+    }
+    });
+
+    var timeline = [];
+
+   //array of words used as stimulus
+   //edit based on population
+    var suicideWords = [
+      'suicide',
+      'dead',
+      'funeral'
+    ];
+
+     var negativeWords = [
+      'alone',
+      'rejected',
+      'stupid'
+    ];
+
+    var neutralWords = [
+      'museum',
+      'paper',
+      'engine'
+    ];
+
+    var practiceStimuli = [
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">red</p>', data:{color:'red', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">red</p>', data:{color:'red', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">blue</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">blue</p>', data:{color:'blue', correct_response: 1}},
+
+    ];
+
+var stroopStimuli = [
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ suicideWords[0] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ suicideWords[0] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ suicideWords[0] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ suicideWords[0] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ suicideWords[1] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ suicideWords[1] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ suicideWords[1] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ suicideWords[1] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ suicideWords[2] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ suicideWords[2] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ suicideWords[2] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ suicideWords[2] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ negativeWords[0] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ negativeWords[0] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ negativeWords[0] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ negativeWords[0] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ negativeWords[1] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ negativeWords[1] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ negativeWords[1] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ negativeWords[1] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ negativeWords[2] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ negativeWords[2] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ negativeWords[2] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ negativeWords[2] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ neutralWords[0] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ neutralWords[0] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ neutralWords[0] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ neutralWords[0] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ neutralWords[1] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ neutralWords[1] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ neutralWords[1] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ neutralWords[1] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ neutralWords[2] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #AA4499; font-size:60px; font-weight:bold;">'+ neutralWords[2] +'</p>', data:{color:'magenta', correct_response: 0}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ neutralWords[2] +'</p>', data:{color:'blue', correct_response: 1}},
+    { stimulus: '<p style="color: #88CCEE; font-size:60px; font-weight:bold;">'+ neutralWords[2] +'</p>', data:{color:'blue', correct_response: 1}},
+  ];
+
+  var practice_instructions_1 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<p>In this task you will see words written in different colored fonts appear on the screen.<br>When you see a word, press the button whose color corresponds to the color of the font the word is written in.</p>',
+        choices: ['NEXT'],
+
+    }
+
+    var practice_instructions_2 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<p>Before we start the task there will be short practice section.<br>Click next to begin</p>',
+        choices: ['NEXT'],
+
+    }
+
+    var task_instructions = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<p>The real task will have different words.<br>Still respond based on the FONT COLOR of the word.<br>Press next to begin the task</p>',
+        choices: ['NEXT'],
+
+    }
+
+var fixation = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<p style="font-size:60px;">+</p>',
+    choices: ['0', '1', '2', '3'],
+    button_html: ['<button class="buttonYellow" style="height:40px;width:50px"></button>', '<button class="buttonGreen" style="height:40px;width:50px"></button>', '<button class="buttonMagenta" style="height:40px;width:50px"></button>', '<button class="buttonBlue" style="height:40px;width:50px"></button>'],
+    trial_duration: 1000,
+    response_ends_trial: false,
+    data: {
+        task: 'fixation'
+      }
+}
+
+var blank1 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '',
+    choices: [],
+    button_html: [],
+    trial_duration: 4000,
+    response_ends_trial: false,
+    data: {
+        task: 'blank'
+      }
+}
+
+var blank1 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '',
+    choices: [],
+    button_html: [],
+    trial_duration: 1000,
+    response_ends_trial: false,
+    data: {
+        task: 'blank'
+      }
+}
+
+var stroop = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: jsPsych.timelineVariable('stimulus'),
+    choices: ['r', 'b'],
+    button_html: ['<button class="buttonRed" style="height:40px;width:50px"></button>', '<button class="buttonBlue" style="height:40px;width:50px"></button>'],
+    response_ends_trial: true,
+    data: {
+        task: 'response',
+    },
+    on_finish: function(data){
+        data.response === data.correct_response ? data.correct = true : data.correct = false;
+      }
+};
+
+var practice = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: jsPsych.timelineVariable('stimulus'),
+    choices: ['y', 'g', 'm', 'b'],
+    button_html: ['<button class="buttonYellow" style="height:40px;width:50px"></button>', '<button class="buttonGreen" style="height:40px;width:50px"></button>', '<button class="buttonMagenta" style="height:40px;width:50px"></button>', '<button class="buttonBlue" style="height:40px;width:50px"></button>'],
+    trial_duration: 1000,
+    response_ends_trial: false,
+    data: {
+        task: 'response',
+    },
+    on_finish: function(data){
+        data.response === data.correct_response ? data.correct = true : data.correct = false;
+      }
+};
+
+var practiceProcedure = {
+    timeline: [blank1, fixation, blank2,, practice],
+    timeline_variables: practiceStimuli,
+    randomize_order: true,
+    repetitions: 2,
+  }
+
+var testProcedure = {
+    timeline: [blank1, fixation, blank2, stroop],
+    timeline_variables: stroopStimuli,
+    randomize_order: true,
+  }
+
+  timeline.push(practice_instructions_1);
+  timeline.push(practice_instructions_2);
+  timeline.push(practiceProcedure);
+  timeline.push(task_instructions);
+  timeline.push(testProcedure);
+    /*start task*/
+      jsPsych.run(timeline);
+    
+
+  </script>
+</html>
