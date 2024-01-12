@@ -115,7 +115,7 @@ var stroopStimuli = [
 var fixation = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '<p style="font-size:60px;">+</p>',
-    choices: ['0', '1'],
+    choices: ['r', 'b'],
     button_html: ['<button class="buttonRed" style="height:40px;width:50px"></button>', '<button class="buttonBlue" style="height:40px;width:50px"></button>'],
     response_ends_trial: false,
     data: {
@@ -164,8 +164,8 @@ var stroop = {
 var practice = {
     type: jsPsychHtmlButtonResponse,
     stimulus: jsPsych.timelineVariable('stimulus'),
-    choices: ['y', 'g', 'm', 'b'],
-    button_html: ['<button class="buttonYellow" style="height:40px;width:50px"></button>', '<button class="buttonGreen" style="height:40px;width:50px"></button>', '<button class="buttonred" style="height:40px;width:50px"></button>', '<button class="buttonBlue" style="height:40px;width:50px"></button>'],
+    choices: ['r', 'b'],
+    button_html: ['<button class="buttonRed" style="height:40px;width:50px"></button>', '<button class="buttonBlue" style="height:40px;width:50px"></button>'],
     trial_duration: 1000,
     response_ends_trial: false,
     data: {
@@ -177,7 +177,7 @@ var practice = {
 };
 
 var practiceProcedure = {
-    timeline: [blank1, fixation, blank2,, practice],
+    timeline: [blank1, fixation, blank2, practice],
     timeline_variables: practiceStimuli,
     randomize_order: true,
     repetitions: 2,
