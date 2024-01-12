@@ -12,6 +12,7 @@
   display: inline-block;
   border: 3px solid white;
   margin: 5%;
+  cursor: pointer;
 }
 .buttonBlue {
   background-color: #88CCEE; 
@@ -25,6 +26,7 @@
   display: inline-block;
   border: 3px solid white;
   margin: 5%;
+  cursor: pointer;
 }
 
 /*!*************************************************************************************************************!*\
